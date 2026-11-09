@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Portfolio</title>
+    <meta name="description" content="The personal portfolio of Akanksha Lathkar, web developer, student, and tech enthusiast.">
+    <meta name="theme-color" content="#100b18">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -17,6 +23,9 @@
                 <a href="#skills">Skills</a>
                 <a href="#contact">Contact</a>
         </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+            Use light theme
+        </button>
     </header>
 
     <!-- Main Content -->
@@ -25,7 +34,7 @@
         <!-- About Section -->
         <section id="about">
             <h2>About Me</h2>
- <img src="image.jpeg"
+ <img src="/images/image1.jpeg"
          alt="Profile picture of Akanksha Lathkar"
          width="200">
 
@@ -46,21 +55,28 @@
         <section id="skills">
             <h2>Skills</h2>
 
-            <h3>Technical Skills</h3>
+            <div class="skill-filters" role="group" aria-label="Filter skills">
+                <button type="button" class="skill-filter" data-filter="all" aria-pressed="true">All</button>
+                <button type="button" class="skill-filter" data-filter="technical" aria-pressed="false">Technical</button>
+                <button type="button" class="skill-filter" data-filter="soft" aria-pressed="false">Soft skills</button>
+            </div>
+            <p class="filter-status" id="filter-status" aria-live="polite"></p>
+
+            <h3 data-skill-heading="technical">Technical Skills</h3>
             <ul>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>JavaScript</li>
-                <li>Python</li>
-                <li>Git & GitHub</li>
+                <li data-skill-category="technical">HTML5</li>
+                <li data-skill-category="technical">CSS3</li>
+                <li data-skill-category="technical">JavaScript</li>
+                <li data-skill-category="technical">Python</li>
+                <li data-skill-category="technical">Git & GitHub</li>
             </ul>
 
-            <h3>Soft Skills</h3>
+            <h3 data-skill-heading="soft">Soft Skills</h3>
             <ol>
-                <li>Communication</li>
-                <li>Problem Solving</li>
-                <li>Teamwork</li>
-                <li>Time Management</li>
+                <li data-skill-category="soft">Communication</li>
+                <li data-skill-category="soft">Problem Solving</li>
+                <li data-skill-category="soft">Teamwork</li>
+                <li data-skill-category="soft">Time Management</li>
             </ol>
         </section>
 
@@ -68,15 +84,16 @@
         <section id="contact">
             <h2>Contact Me</h2>
 
-            #
-
+            <form id="contact-form" novalidate>
                 <label for="name">Name:</label><br>
                 <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    minlength="2">
+                    minlength="2"
+                    aria-describedby="name-error">
+                <span class="field-error" id="name-error"></span>
                 <br><br>
 
                 <label for="email">Email:</label><br>
@@ -84,7 +101,9 @@
                     type="email"
                     id="email"
                     name="email"
-                    required>
+                    required
+                    aria-describedby="email-error">
+                <span class="field-error" id="email-error"></span>
                 <br><br>
 
                 <label for="message">Message:</label><br>
@@ -92,16 +111,22 @@
                     id="message"
                     name="message"
                     rows="5"
-                    required></textarea>
+                    minlength="10"
+                    maxlength="500"
+                    required
+                    aria-describedby="message-error message-count"></textarea>
+                <span class="field-error" id="message-error"></span>
+                <span class="character-count" id="message-count" aria-live="polite">0 / 500 characters</span>
                 <br><br>
 
                 <button type="submit">Send Message</button>
+                <p class="form-note" id="form-status" role="status">This form is a visual demo and is not connected to a message service yet.</p>
 
             </form>
 
             <h3>Find Me Online</h3>
             <p>
-                 <a href="https://github.com" target="_blank">GitHub</a>
+                 <a href="https://github.com/akankshalathkar41-oss/Internship/blob/main/Index.html" target="_blank">GitHub</a>
             </p>
 
             <p>
@@ -115,8 +140,9 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Akanksha Lathkar. All Rights Reserved.</p>
+        <p>&copy; <span id="current-year">2026</span> Akanksha Lathkar. All Rights Reserved.</p>
     </footer>
 
+    <script src="script.js" defer></script>
 </body>
 </html>
