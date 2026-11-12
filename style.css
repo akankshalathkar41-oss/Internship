@@ -135,7 +135,7 @@ h3 {
     float: right;
     width: min(32%, 200px);
     height: auto;
-    margin: 0 0 1rem 2rem;
+    margin: -2rem 0 1rem 2rem;
     border: 5px solid #d946ef;
     border-radius: 50%;
     object-fit: cover;
